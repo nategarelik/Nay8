@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct JaredConstants {
+struct GarelikAssistantConstants {
     static let restApiIsDisabled = "RestApiIsDisabled"
-    static let jaredIsDisabled = "JaredIsDisabled"
+    static let garelikAssistantIsDisabled = "GarelikAssistantIsDisabled"
     static let contactsAccess = "ContactsAccess"
     static let sendMessageAccess = "SendMessageAccess"
     static let fullDiskAccess = "FullDiskAccess"

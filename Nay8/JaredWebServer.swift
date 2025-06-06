@@ -18,23 +18,23 @@ class JaredWebServer: NSObject {
         
         port = configuration.port
         
-        defaults.addObserver(self, forKeyPath: JaredConstants.restApiIsDisabled, options: .new, context: nil)
+        defaults.addObserver(self, forKeyPath: GarelikAssistantConstants.restApiIsDisabled, options: .new, context: nil)
         updateServerState()
     }
     
     deinit {
         stop()
-        UserDefaults.standard.removeObserver(self, forKeyPath: JaredConstants.jaredIsDisabled)
+        UserDefaults.standard.removeObserver(self, forKeyPath: GarelikAssistantConstants.garelikAssistantIsDisabled)
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if (keyPath == JaredConstants.restApiIsDisabled) {
+        if (keyPath == GarelikAssistantConstants.restApiIsDisabled) {
             updateServerState()
         }
     }
     
     func updateServerState() {
-        if (defaults.bool(forKey: JaredConstants.restApiIsDisabled)) {
+        if (defaults.bool(forKey: GarelikAssistantConstants.restApiIsDisabled)) {
             stop()
         } else {
             start()

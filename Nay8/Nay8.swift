@@ -1,6 +1,6 @@
 //
-//  Jared.swift
-//  JaredFramework
+//  Nay8.swift
+//  Nay8Framework
 //
 //  Created by Zeke Snider on 2/3/19.
 //  Copyright © 2019 Zeke Snider. All rights reserved.
@@ -9,7 +9,7 @@
 import Foundation
 import JaredFramework
 
-public class Jared: MessageSender {
+public class Nay8: MessageSender {
     let queue = OperationQueue()
     
     init() {
@@ -35,7 +35,7 @@ public class Jared: MessageSender {
         let defaults = UserDefaults.standard
         
         //Don't send the message if Jared is currently disabled.
-        guard !defaults.bool(forKey: JaredConstants.jaredIsDisabled) else {
+        guard !defaults.bool(forKey: Nay8Constants.nay8IsDisabled) else {
             return
         }
         

@@ -14,4 +14,5 @@ protocol PluginManagerDelegate {
     func getAllModules() -> [RoutingModule]
     func reload()
     func enabled(routeName: String) -> Bool
+    func getMessageSender() -> MessageSender
 }

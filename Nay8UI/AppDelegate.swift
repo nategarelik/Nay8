@@ -11,21 +11,21 @@ import Contacts
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    var sender: Jared
+    var sender: GarelikAssistant
     var pluginManager: PluginManager
     var server: JaredWebServer
     var databaseHelper: DatabaseHandler!
     override init() {
         UserDefaults.standard.register(defaults: [
-            JaredConstants.jaredIsDisabled: false,
-            JaredConstants.restApiIsDisabled: true,
-            JaredConstants.contactsAccess: CNAuthorizationStatus.notDetermined.rawValue,
-            JaredConstants.fullDiskAccess: true
+            GarelikAssistantConstants.garelikAssistantIsDisabled: false,
+            GarelikAssistantConstants.restApiIsDisabled: true,
+            GarelikAssistantConstants.contactsAccess: CNAuthorizationStatus.notDetermined.rawValue,
+            GarelikAssistantConstants.fullDiskAccess: true
         ])
         
         let config = ConfigurationHelper.getConfiguration()
         
-        sender = Jared()
+        sender = GarelikAssistant()
         pluginManager = PluginManager(sender: sender, configuration: config, pluginDir: ConfigurationHelper.getPluginDirectory())
         server = JaredWebServer(sender: sender, configuration: config.webServer)
         super.init()

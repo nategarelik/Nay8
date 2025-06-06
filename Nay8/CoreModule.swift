@@ -1,6 +1,6 @@
 //
 //  CoreModule.swift
-//  Jared 3.0 - Swiftified
+//  GarelikAssistant - Swiftified
 //
 //  Created by Zeke Snider on 4/3/16.
 //  Copyright © 2016 Zeke Snider. All rights reserved.
@@ -49,20 +49,20 @@ class CoreModule: RoutingModule {
     
     required public init(sender: MessageSender) {
         self.sender = sender
-        let appsupport = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0].appendingPathComponent("Jared").appendingPathComponent("CoreModule")
+        let appsupport = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0].appendingPathComponent("GarelikAssistant").appendingPathComponent("CoreModule")
         try! FileManager.default.createDirectory(at: appsupport, withIntermediateDirectories: true, attributes: nil)
         
         let ping = Route(name:"/ping", comparisons: [.startsWith: ["/ping"]], call: {[weak self] in self?.pingCall($0)}, description: NSLocalizedString("pingDescription"))
         
         let thankYou = Route(name:"Thank You", comparisons: [.startsWith: [NSLocalizedString("ThanksJaredCommand")]], call: {[weak self] in self?.thanksJared($0)}, description: NSLocalizedString("ThanksJaredResponse"))
         
-        let version = Route(name: "/version", comparisons: [.startsWith: ["/version"]], call: {[weak self] in self?.getVersion($0)}, description: "Get the version of Jared running")
+        let version = Route(name: "/version", comparisons: [.startsWith: ["/version"]], call: {[weak self] in self?.getVersion($0)}, description: "Get the version of GarelikAssistant running")
         
         let whoami = Route(name: "/whoami", comparisons: [.startsWith: ["/whoami"]], call: {[weak self] in self?.getWho($0)}, description: "Get your name")
         
         let send = Route(name: "/send", comparisons: [.startsWith: ["/send"]], call: {[weak self] in self?.sendRepeat($0)}, description: NSLocalizedString("sendDescription"),parameterSyntax: NSLocalizedString("sendSyntax"))
         
-        let name = Route(name: "/name", comparisons: [.startsWith: ["/name"]], call: {[weak self] in self?.changeName($0)}, description: "Change what Jared calls you", parameterSyntax: "/name,[your preferred name]")
+        let name = Route(name: "/name", comparisons: [.startsWith: ["/name"]], call: {[weak self] in self?.changeName($0)}, description: "Change what GarelikAssistant calls you", parameterSyntax: "/name,[your preferred name]")
         
         let schedule = Route(name: "/schedule", comparisons: [.startsWith: ["/schedule"]], call: {[weak self] in self?.schedule($0)}, description: NSLocalizedString("scheduleDescription"), parameterSyntax: "Must be one of these type of inputs: /schedule,add,1,Week,5,full Message\n/schedule,delete,1\n/schedule,list")
         
@@ -288,7 +288,7 @@ class CoreModule: RoutingModule {
             // Creating a new contact
             let newContact = CNMutableContact()
             newContact.givenName = parsedMessage[1]
-            newContact.note = "Created By jared.app"
+            newContact.note = "Created By GarelikAssistant.app"
             
             //If it contains an at, add the handle as email, otherwise add it as phone
             if (message.sender.handle.contains("@")) {

@@ -32,10 +32,11 @@ class Router : RouterDelegate {
         
         let defaults = UserDefaults.standard
         
-        guard !defaults.bool(forKey: JaredConstants.jaredIsDisabled) || myLowercaseMessage == "/enable" else {
+        guard !defaults.bool(forKey: GarelikAssistantConstants.garelikAssistantIsDisabled) || myLowercaseMessage == "/enable" else {
             return
         }
         
+        var commandMatched = false
         RootLoop: for route in pluginManager.getAllRoutes() {
             guard (pluginManager.enabled(routeName: route.name)) else {
                 break
@@ -48,6 +49,7 @@ class Router : RouterDelegate {
                             if url.contains(comparisonString) {
                                 let urlMessage = Message(body: TextBody(url), date: myMessage.date ?? Date(), sender: myMessage.sender, recipient: myMessage.recipient, attachments: [])
                                 route.call(urlMessage)
+                                commandMatched = true
                             }
                         }
                     }
@@ -57,6 +59,7 @@ class Router : RouterDelegate {
                     for comparisonString in comparison.1 {
                         if myLowercaseMessage.hasPrefix(comparisonString.lowercased()) {
                             route.call(myMessage)
+                            commandMatched = true
                         }
                     }
                 }
@@ -65,6 +68,7 @@ class Router : RouterDelegate {
                     for comparisonString in comparison.1 {
                         if myLowercaseMessage.contains(comparisonString.lowercased()) {
                             route.call(myMessage)
+                            commandMatched = true
                         }
                     }
                 }
@@ -73,15 +77,21 @@ class Router : RouterDelegate {
                     for comparisonString in comparison.1 {
                         if myLowercaseMessage == comparisonString.lowercased() {
                             route.call(myMessage)
+                            commandMatched = true
                         }
                     }
                 }
                 else if comparison.0 == .isReaction {
                     if myMessage.action != nil {
                         route.call(myMessage)
+                        commandMatched = true
                     }
                 }
             }
+        }
+
+        if !commandMatched && !myMessage.isFromMe {
+            AIHandler.shared.processMessage(myMessage, using: pluginManager.getMessageSender())
         }
     }
 }

@@ -87,12 +87,12 @@ class InternalModule: RoutingModule {
     }
     
     func enable(_ message: Message) -> Void {
-        defaults.set(false, forKey: JaredConstants.jaredIsDisabled)
+        defaults.set(false, forKey: GarelikAssistantConstants.garelikAssistantIsDisabled)
         sender.send(NSLocalizedString("enabledMessage"), to: message.RespondTo())
     }
     
     func disable(_ message: Message) -> Void {
-        defaults.set(true, forKey: JaredConstants.jaredIsDisabled)
+        defaults.set(true, forKey: GarelikAssistantConstants.garelikAssistantIsDisabled)
         sender.send(NSLocalizedString("disabledMessage"), to: message.RespondTo())
     }
     

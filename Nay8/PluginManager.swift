@@ -113,4 +113,8 @@ class PluginManager: PluginManagerDelegate {
     func getAllRoutes() -> [Route] {
         return modules.flatMap { module in module.routes }
     }
+    
+    func getMessageSender() -> MessageSender {
+        return sender
+    }
 }

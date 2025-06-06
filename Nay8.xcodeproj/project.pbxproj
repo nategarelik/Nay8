@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -61,7 +61,7 @@
 		B3B62A38296223E600EC9602 /* Telegraph in Frameworks */ = {isa = PBXBuildFile; productRef = B3B62A37296223E600EC9602 /* Telegraph */; };
 		B3B62A452962270000EC9602 /* Telegraph in Frameworks */ = {isa = PBXBuildFile; productRef = B3B62A442962270000EC9602 /* Telegraph */; };
 		B3B7E52424E9EE2000A3FBD1 /* AutomationPermissionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B7E52324E9EE2000A3FBD1 /* AutomationPermissionState.swift */; };
-		B3B7E52524EA00BC00A3FBD1 /* JaredConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FB28F324E9BCBD003BA6CB /* JaredConstants.swift */; };
+		B3B7E52524EA00BC00A3FBD1 /* Nay8Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FB28F324E9BCBD003BA6CB /* Nay8Constants.swift */; };
 		B3B7E52924EA579600A3FBD1 /* Webhook.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B7E52824EA579600A3FBD1 /* Webhook.swift */; };
 		B3B844B824D7791800DC162A /* ActionTypeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B844B724D7791700DC162A /* ActionTypeTest.swift */; };
 		B3B844BA24D77A4900DC162A /* SendStyleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B844B924D77A4800DC162A /* SendStyleTest.swift */; };
@@ -94,7 +94,7 @@
 		B3EF1DB02206E4EB00953DE7 /* MessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3EF1DAF2206E4EB00953DE7 /* MessageTests.swift */; };
 		B3F185F724E51C880051C696 /* CoreModule.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B3F185F524E51C880051C696 /* CoreModule.xcdatamodeld */; };
 		B3FB28F224E9BAF7003BA6CB /* PermissionsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FB28F124E9BAF7003BA6CB /* PermissionsHelper.swift */; };
-		B3FB28F424E9BCBD003BA6CB /* JaredConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FB28F324E9BCBD003BA6CB /* JaredConstants.swift */; };
+		B3FB28F424E9BCBD003BA6CB /* Nay8Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FB28F324E9BCBD003BA6CB /* Nay8Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -223,7 +223,7 @@
 		B3EF1DAF2206E4EB00953DE7 /* MessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTests.swift; sourceTree = "<group>"; };
 		B3F185F624E51C880051C696 /* CoreModule.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreModule.xcdatamodel; sourceTree = "<group>"; };
 		B3FB28F124E9BAF7003BA6CB /* PermissionsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsHelper.swift; sourceTree = "<group>"; };
-		B3FB28F324E9BCBD003BA6CB /* JaredConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JaredConstants.swift; sourceTree = "<group>"; };
+		B3FB28F324E9BCBD003BA6CB /* Nay8Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nay8Constants.swift; sourceTree = "<group>"; };
 		C31CB7445EAF3431D6AA3FD4 /* Pods_JaredUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JaredUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -275,7 +275,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		7F84B6201CC506790059A82B /* JaredFramework */ = {
+		7F84B6201CC506790059A82B /* Nay8Framework */ = {
 			isa = PBXGroup;
 			children = (
 				7F84B6211CC506790059A82B /* JaredFramework.h */,
@@ -291,19 +291,19 @@
 				7F84B6231CC506790059A82B /* Info.plist */,
 				B369508F24DE8FD00027CB1E /* Configuration.plist */,
 			);
-			path = JaredFramework;
+			path = Nay8Framework;
 			sourceTree = "<group>";
 		};
-		B319236024DE76A2001904BA /* JaredUITests */ = {
+		B319236024DE76A2001904BA /* Nay8UITests */ = {
 			isa = PBXGroup;
 			children = (
 				B319236124DE76A2001904BA /* JaredUITests.swift */,
 				B319236324DE76A2001904BA /* Info.plist */,
 			);
-			path = JaredUITests;
+			path = Nay8UITests;
 			sourceTree = "<group>";
 		};
-		B33278781CB2CB1300BBDD3A /* JaredUI */ = {
+		B33278781CB2CB1300BBDD3A /* Nay8UI */ = {
 			isa = PBXGroup;
 			children = (
 				B33278791CB2CB1300BBDD3A /* AppDelegate.swift */,
@@ -314,10 +314,10 @@
 				B332787F1CB2CB1300BBDD3A /* Main.storyboard */,
 				B33278821CB2CB1300BBDD3A /* Info.plist */,
 			);
-			path = JaredUI;
+			path = Nay8UI;
 			sourceTree = "<group>";
 		};
-		B3327DCF22068176009DD882 /* JaredTests */ = {
+		B3327DCF22068176009DD882 /* Nay8Tests */ = {
 			isa = PBXGroup;
 			children = (
 				B3327DC722068147009DD882 /* WebhookTests.swift */,
@@ -336,7 +336,7 @@
 				B3B844CD24DA6AB200DC162A /* config.json */,
 				B3327DD222068176009DD882 /* Info.plist */,
 			);
-			path = JaredTests;
+			path = Nay8Tests;
 			sourceTree = "<group>";
 		};
 		B38BB6AE24EBB4CE000700F7 /* Structures */ = {
@@ -358,7 +358,7 @@
 				B3FB28F124E9BAF7003BA6CB /* PermissionsHelper.swift */,
 				B3327DC32206607B009DD882 /* ContactHelper.swift */,
 				7F0E931C1D02FC250096BABE /* Global.swift */,
-				B3FB28F324E9BCBD003BA6CB /* JaredConstants.swift */,
+				B3FB28F324E9BCBD003BA6CB /* Nay8Constants.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -368,10 +368,10 @@
 			children = (
 				B33278511CB2C94700BBDD3A /* AppKit.framework */,
 				B39EC1741CB01F55002C3161 /* Jared */,
-				B33278781CB2CB1300BBDD3A /* JaredUI */,
-				7F84B6201CC506790059A82B /* JaredFramework */,
-				B3327DCF22068176009DD882 /* JaredTests */,
-				B319236024DE76A2001904BA /* JaredUITests */,
+				B33278781CB2CB1300BBDD3A /* Nay8UI */,
+				7F84B6201CC506790059A82B /* Nay8Framework */,
+				B3327DCF22068176009DD882 /* Nay8Tests */,
+				B319236024DE76A2001904BA /* Nay8UITests */,
 				B39EC1731CB01F55002C3161 /* Products */,
 				739CD530157F72CF2AD79314 /* Frameworks */,
 			);
@@ -726,7 +726,7 @@
 				B3B7E52424E9EE2000A3FBD1 /* AutomationPermissionState.swift in Sources */,
 				B3B7E52924EA579600A3FBD1 /* Webhook.swift in Sources */,
 				B3C59284224DD17900116ECB /* JaredWebServer.swift in Sources */,
-				B3FB28F424E9BCBD003BA6CB /* JaredConstants.swift in Sources */,
+				B3FB28F424E9BCBD003BA6CB /* Nay8Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -745,7 +745,7 @@
 				B3B844C824D92C2200DC162A /* DatabaseHandler.swift in Sources */,
 				B3B844C024D8F91900DC162A /* DatabaseHandlerTest.swift in Sources */,
 				B32DE51824D5231800AB3A71 /* PluginManagerDelegate.swift in Sources */,
-				B3B7E52524EA00BC00A3FBD1 /* JaredConstants.swift in Sources */,
+				B3B7E52524EA00BC00A3FBD1 /* Nay8Constants.swift in Sources */,
 				B32DE51624D522DA00AB3A71 /* Router.swift in Sources */,
 				B3BF17CA244FDA3F00CC44C5 /* MessageDelegate.swift in Sources */,
 				B3B844C524D9288000DC162A /* RouterDelegate.swift in Sources */,
