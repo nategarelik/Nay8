@@ -1,13 +1,13 @@
 /* 
   CoreStrings.strings
-  Jared
+  Nay8
 
-  Created by Zeke Snider on 4/5/16.
-  Copyright © 2016 Zeke Snider. All rights reserved.
+  Created by Nathaniel Garelik on 06/05/25.
+  Copyright © 2025 Nathaniel Garelik. All rights reserved.
 */
 
 "InternalModule" = "Internal functionality to message routing";
-"CoreDescription" = "Core functionality for Jared with universal uses";
+"CoreDescription" = "Core functionality for Nay8 with universal uses";
 
 /* Response for /ping command */
 "hello" = "bonjour";
@@ -16,16 +16,16 @@
 "WelcomeResponse" = "You're welcome.";
 
 /* Thank you command */
-"ThanksJaredCommand" = "Thank you Jared";
-"ThanksJaredResponse" = "Thank Jared";
+"ThanksNay8Command" = "Thank you Nay8";
+"ThanksNay8Response" = "Thank Nay8";
 
 /* Ping command */
 "pingDescription" = "Check if the chat bot is available";
 "PongResponse" = "Pong!";
 
 /* Version */
-"versionDescription" = "Get what version Jared is running";
-"versionResponse" = "I am version 1.5 of Jared, compiled on Swift 5!";
+"versionDescription" = "Get what version Nay8 is running";
+"versionResponse" = "I am version 1.5 of Nay8, compiled on Swift 5!";
 
 /* send */
 "sendSyntax" = "/send,[number of times],[send delay],[message to send]";
@@ -38,12 +38,12 @@
 "barfDescription" = "Debug message parameters";
 
 /* enable */
-"enableDescription" = "Enable Jared";
-"enabledMessaged" = "Jared has been re-enabled. To disable, type /disable";
+"enableDescription" = "Enable Nay8";
+"enabledMessaged" = "Nay8 has been re-enabled. To disable, type /disable";
 
 /* disable */
-"disableDescription" = "Disable Jared";
-"disabledMessage" = "Jared has been disabled. Type /enable to re-enable.";
+"disableDescription" = "Disable Nay8";
+"disabledMessage" = "Nay8 has been disabled. Type /enable to re-enable.";
 
 /* help */
 "helpDescription" = "Get help on commands";

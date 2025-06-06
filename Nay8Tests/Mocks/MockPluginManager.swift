@@ -1,19 +1,19 @@
 //
 //  MockPluginManager.swift
-//  JaredTests
+//  Nay8Tests
 //
-//  Created by Zeke Snider on 8/1/20.
-//  Copyright © 2020 Zeke Snider. All rights reserved.
+//  Created by Nathaniel Garelik on 06/05/25.
+//  Copyright © 2025 Nathaniel Garelik. All rights reserved.
 //
 
 import Foundation
-import JaredFramework
+import Nay8Framework
 
 let startWithString = "/startWith"
 let containsString = "/contains"
 let isString = "/is"
 
-let goodUrl = "https://zeke.dev"
+
 
 class MockRoute: RoutingModule {
     var sender: MessageSender

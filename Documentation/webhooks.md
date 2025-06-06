@@ -1,6 +1,6 @@
 # Webhooks
 
-Jared provides a webhook API which allows you to be notified of messages being sent/received. You can reply inline to the webhook requests to respond, or make separate requests to the [REST API](restapi.md). You can use a site like https://webhook.site/ to debug and view webhook content.
+Nay8 provides a webhook API which allows you to be notified of messages being sent/received. You can reply inline to the webhook requests to respond, or make separate requests to the [REST API](restapi.md). You can use a site like https://webhook.site/ to debug and view webhook content.
 
 ## Configuration
 To add webhooks, add their URLs to `config.json`'s `webhooks` key. You can define two types of webhooks:
@@ -40,7 +40,7 @@ When a webhook is triggered, The body of the POST request is in the following fo
 ```
 {
   "body": {
-    "message": "Jared is an amazing app"
+    "message": "Nay8 is an amazing app"
   },
   "sendStyle": "regular",
   "attachments": [],
@@ -147,7 +147,7 @@ When a webhook is triggered, The body of the POST request is in the following fo
 {
   "sender": {
     "handle": "handle@icloud.com",
-    "givenName": "Jared",
+    "givenName": "Nay8User",
     "isMe": false
   },
   "sendStyle": "regular",
@@ -176,7 +176,7 @@ When a webhook is triggered, The body of the POST request is in the following fo
 ```
 
 ## Webhook Responses
-When called, Jared will wait for 10 seconds for a response from the webhook endpoint. If a response is received in time, Jared will then respond to the triggering message with the content of the webhook response. The response must have a `200` HTTP status code, and be in the following format:
+When called, Nay8 will wait for 10 seconds for a response from the webhook endpoint. If a response is received in time, Nay8 will then respond to the triggering message with the content of the webhook response. The response must have a `200` HTTP status code, and be in the following format:
 ```
 {
   "success": true,
@@ -186,7 +186,7 @@ When called, Jared will wait for 10 seconds for a response from the webhook endp
 }
 ```
 
-In the case that the server is unable to process the request, you may return back an error response instead. Jared will log this for debugging purposes.
+In the case that the server is unable to process the request, you may return back an error response instead. Nay8 will log this for debugging purposes.
 ```
 {
   "success": false,
@@ -195,5 +195,5 @@ In the case that the server is unable to process the request, you may return bac
 ```
 
 ## Sending other messages
-If you wish to send multiple messages, cannot fit inside the 10 second timeout, or have other non-synchronous use cases, your server can make a request to send a message at any time using Jared's [REST API](restapi.md).
+If you wish to send multiple messages, cannot fit inside the 10 second timeout, or have other non-synchronous use cases, your server can make a request to send a message at any time using Nay8's [REST API](restapi.md).
 

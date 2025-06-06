@@ -1,14 +1,14 @@
 //
-//  JaredUITests.swift
-//  JaredUITests
+//  Nay8UITests.swift
+//  Nay8UITests
 //
-//  Created by Zeke Snider on 8/7/20.
-//  Copyright © 2020 Zeke Snider. All rights reserved.
+//  Created by Nathaniel Garelik on 06/05/25.
+//  Copyright © 2025 Nathaniel Garelik. All rights reserved.
 //
 
 import XCTest
 
-class JaredUITests: XCTestCase {
+class Nay8UITests: XCTestCase {
     override func setUpWithError() throws {
         // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
@@ -28,17 +28,17 @@ class JaredUITests: XCTestCase {
         app.launchArguments.append("-UITesting")
         app.launch()
         
-        let jaredWindow = XCUIApplication().windows["Jared"]
-        let disabledText = jaredWindow.staticTexts["Jared is currently disabled"]
-        let disabledImage = jaredWindow.images["unavailable"]
+        let Nay8Window = XCUIApplication().windows["Nay8"]
+        let disabledText = Nay8Window.staticTexts["Nay8 is currently disabled"]
+        let disabledImage = Nay8Window.images["unavailable"]
         
-        let enabledImage = jaredWindow.children(matching: .image).matching(identifier: "available").element(boundBy: 0)
-        let enabledText = jaredWindow.staticTexts["Jared is currently enabled"]
+        let enabledImage = Nay8Window.children(matching: .image).matching(identifier: "available").element(boundBy: 0)
+        let enabledText = Nay8Window.staticTexts["Nay8 is currently enabled"]
         
-        let disableButton = jaredWindow.buttons["Disable Jared"]
-        let enableButton = jaredWindow.buttons["Enable Jared"]
+        let disableButton = Nay8Window.buttons["Disable Nay8"]
+        let enableButton = Nay8Window.buttons["Enable Nay8"]
         
-        jaredWindow.click()
+        Nay8Window.click()
         XCTAssertFalse(disabledText.exists)
         XCTAssertFalse(disabledImage.exists)
         XCTAssertTrue(enabledText.exists)

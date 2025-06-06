@@ -1,13 +1,13 @@
 //
 //  Router.swift
-//  Jared
+//  Nay8
 //
-//  Created by Zeke Snider on 4/20/20.
-//  Copyright © 2020 Zeke Snider. All rights reserved.
+//  Created by Nathaniel Garelik on 06/05/25.
+//  Copyright © 2025 Nathaniel Garelik. All rights reserved.
 //
 
 import Foundation
-import JaredFramework
+import Nay8Framework
 
 class Router : RouterDelegate {
     var pluginManager: PluginManagerDelegate
@@ -32,7 +32,7 @@ class Router : RouterDelegate {
         
         let defaults = UserDefaults.standard
         
-        guard !defaults.bool(forKey: GarelikAssistantConstants.garelikAssistantIsDisabled) || myLowercaseMessage == "/enable" else {
+        guard !defaults.bool(forKey: Nay8Constants.nay8IsDisabled) || myLowercaseMessage == "/enable" else {
             return
         }
         
@@ -90,8 +90,12 @@ class Router : RouterDelegate {
             }
         }
 
-        if !commandMatched && !myMessage.isFromMe {
-            AIHandler.shared.processMessage(myMessage, using: pluginManager.getMessageSender())
+        if !commandMatched {
+            if let senderPerson = myMessage.sender as? Person, !senderPerson.isMe {
+                AIHandler.shared.processMessage(myMessage, using: pluginManager.getMessageSender())
+            } else if !(myMessage.sender is Person) { // If sender is not a Person, assume not from me for AI processing
+                AIHandler.shared.processMessage(myMessage, using: pluginManager.getMessageSender())
+            }
         }
     }
 }

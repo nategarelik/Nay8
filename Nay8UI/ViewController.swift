@@ -1,9 +1,9 @@
 //
 //  ViewController.swift
-//  JaredUI
+//  Nay8UI
 //
-//  Created by Zeke Snider on 4/5/16.
-//  Copyright © 2016 Zeke Snider. All rights reserved.
+//  Created by Nathaniel Garelik on 06/05/25.
+//  Copyright © 2025 Nathaniel Garelik. All rights reserved.
 //
 
 import Cocoa
@@ -11,11 +11,11 @@ import Contacts
 
 class ViewController: NSViewController, DiskAccessDelegate {
     let observeKeys = [
-        GarelikAssistantConstants.garelikAssistantIsDisabled,
-        GarelikAssistantConstants.restApiIsDisabled,
-        GarelikAssistantConstants.contactsAccess,
-        GarelikAssistantConstants.sendMessageAccess,
-        GarelikAssistantConstants.fullDiskAccess
+        Nay8Constants.nay8IsDisabled,
+        Nay8Constants.restApiIsDisabled,
+        Nay8Constants.contactsAccess,
+        Nay8Constants.sendMessageAccess,
+        Nay8Constants.fullDiskAccess
     ]
     var defaults: UserDefaults!
     
@@ -35,7 +35,7 @@ class ViewController: NSViewController, DiskAccessDelegate {
         if #available(OSX 10.12.2, *) {
             self.view.window?.unbind(NSBindingName(rawValue: #keyPath(touchBar)))
         }
-        UserDefaults.standard.removeObserver(self, forKeyPath: GarelikAssistantConstants.garelikAssistantIsDisabled)
+        UserDefaults.standard.removeObserver(self, forKeyPath: Nay8Constants.nay8IsDisabled)
     }
     
     override func viewDidAppear() {
@@ -59,18 +59,18 @@ class ViewController: NSViewController, DiskAccessDelegate {
     
     func updateTouchBarButton() {
         DispatchQueue.main.async{
-            let noDiskAccess = !self.defaults.bool(forKey: GarelikAssistantConstants.fullDiskAccess)
+            let noDiskAccess = !self.defaults.bool(forKey: Nay8Constants.fullDiskAccess)
             
-            if (self.defaults.bool(forKey: GarelikAssistantConstants.garelikAssistantIsDisabled) || noDiskAccess) {
+            if (self.defaults.bool(forKey: Nay8Constants.nay8IsDisabled) || noDiskAccess) {
                 self.EnableDisableButton.title = "Enable"
-                self.EnableDisableUiButton.title = "Enable GarelikAssistant"
-                self.JaredStatusLabel.stringValue = "GarelikAssistant is currently disabled"
+                self.EnableDisableUiButton.title = "Enable Nay8"
+                self.Nay8StatusLabel.stringValue = "Nay8 is currently disabled"
                 self.statusImage.image = NSImage(named: NSImage.statusUnavailableName)
             }
             else {
                 self.EnableDisableButton.title = "Disable"
-                self.EnableDisableUiButton.title = "Disable Jared"
-                self.JaredStatusLabel.stringValue = "GarelikAssistant is currently enabled"
+                self.EnableDisableUiButton.title = "Disable Nay8"
+                self.Nay8StatusLabel.stringValue = "Nay8 is currently enabled"
                 self.statusImage.image = NSImage(named: NSImage.statusAvailableName)
             }
             
@@ -79,7 +79,7 @@ class ViewController: NSViewController, DiskAccessDelegate {
                 self.EnableDisableButton.title = "Enable Disk Access"
             }
             
-            if (self.defaults.bool(forKey: GarelikAssistantConstants.restApiIsDisabled)) {
+            if (self.defaults.bool(forKey: Nay8Constants.restApiIsDisabled)) {
                 self.EnableDisableRestApiUiButton.title = "Enable API"
                 self.RestApiStatusLabel.stringValue = "REST API is currently disabled"
                 self.RestApiStatusImage.image = NSImage(named: NSImage.statusUnavailableName)
@@ -90,7 +90,7 @@ class ViewController: NSViewController, DiskAccessDelegate {
                 self.RestApiStatusImage.image = NSImage(named: NSImage.statusAvailableName)
             }
             
-            switch(CNAuthorizationStatus(rawValue: self.defaults.integer(forKey: GarelikAssistantConstants.contactsAccess))) {
+            switch(CNAuthorizationStatus(rawValue: self.defaults.integer(forKey: Nay8Constants.contactsAccess))) {
             case .notDetermined:
                 self.contactsLabel.stringValue = "Contacts access not set"
                 self.contactsButton.title = "Enable Contacts"
@@ -115,9 +115,9 @@ class ViewController: NSViewController, DiskAccessDelegate {
                 break
             }
             
-            switch(AutomationPermissionState(rawValue: self.defaults.integer(forKey: GarelikAssistantConstants.sendMessageAccess))) {
+            switch(AutomationPermissionState(rawValue: self.defaults.integer(forKey: Nay8Constants.sendMessageAccess))) {
             case .authorized:
-                self.sendStatusLabel.stringValue = "GarelikAssistant can send messages"
+                self.sendStatusLabel.stringValue = "Nay8 can send messages"
                 self.sendStatusImage.image = NSImage(named: NSImage.statusAvailableName)
                 self.sendStatusButton.title = "Manage automation"
                 
@@ -127,7 +127,7 @@ class ViewController: NSViewController, DiskAccessDelegate {
                     self.sendStatusButton.isEnabled = false
                 }
             case .declined:
-                self.sendStatusLabel.stringValue = "Jared not permitted to send messages."
+                self.sendStatusLabel.stringValue = "Nay8 not permitted to send messages."
                 self.sendStatusImage.image = NSImage(named: NSImage.statusUnavailableName)
                 self.sendStatusButton.title = "Manage automation"
             case .notDetermined:
@@ -135,7 +135,7 @@ class ViewController: NSViewController, DiskAccessDelegate {
                 self.sendStatusImage.image = NSImage(named: NSImage.statusPartiallyAvailableName)
                 self.sendStatusButton.title = "Enable automation"
             case .notRunning:
-                self.sendStatusLabel.stringValue = "GarelikAssistant cannot check send permissions because Messages is not open"
+                self.sendStatusLabel.stringValue = "Nay8 cannot check send permissions because Messages is not open"
                 self.sendStatusImage.image = NSImage(named: NSImage.statusPartiallyAvailableName)
                 self.sendStatusButton.title = "Recheck"
             case .none, .unknown:
@@ -149,7 +149,7 @@ class ViewController: NSViewController, DiskAccessDelegate {
     func displayAccessError() {
         let alert: NSAlert = NSAlert()
         alert.messageText = "Permission Error"
-        alert.informativeText = "GarelikAssistant requires \"full disk access\" to access the Messages database. This is an OS level restriction and can be enabled in System Preferences."
+        alert.informativeText = "Nay8 requires \"full disk access\" to access the Messages database. This is an OS level restriction and can be enabled in System Preferences."
         alert.alertStyle = NSAlert.Style.warning
         alert.addButton(withTitle: "Open System Preferences")
         alert.addButton(withTitle: "Cancel")
@@ -158,11 +158,11 @@ class ViewController: NSViewController, DiskAccessDelegate {
         let res = alert.runModal()
         
         if(res == NSApplication.ModalResponse.alertFirstButtonReturn) {
-            NSWorkspace.shared.open(URL(string: GarelikAssistantConstants.fullDiskAcccessUrl)!)
+            NSWorkspace.shared.open(URL(string: Nay8Constants.fullDiskAcccessUrl)!)
         }
     }
     
-    @IBOutlet weak var JaredStatusLabel: NSTextField!
+    @IBOutlet weak var Nay8StatusLabel: NSTextField!
     @IBOutlet weak var EnableDisableUiButton: NSButton!
     @IBOutlet weak var EnableDisableButton: NSButtonCell!
     @IBOutlet weak var EnableDisableRestApiUiButton: NSButton!
@@ -177,34 +177,34 @@ class ViewController: NSViewController, DiskAccessDelegate {
     @IBOutlet weak var sendStatusButton: NSButton!
     
     @IBAction func EnableDisableAction(_ sender: Any) {
-        if (defaults.bool(forKey: GarelikAssistantConstants.fullDiskAccess)) {
-            if (defaults.bool(forKey: GarelikAssistantConstants.garelikAssistantIsDisabled)) {
-                defaults.set(false, forKey: GarelikAssistantConstants.garelikAssistantIsDisabled)
+        if (defaults.bool(forKey: Nay8Constants.fullDiskAccess)) {
+            if (defaults.bool(forKey: Nay8Constants.nay8IsDisabled)) {
+                defaults.set(false, forKey: Nay8Constants.nay8IsDisabled)
             } else {
-                defaults.set(true, forKey: GarelikAssistantConstants.garelikAssistantIsDisabled)
+                defaults.set(true, forKey: Nay8Constants.nay8IsDisabled)
             }
         } else {
-            NSWorkspace.shared.open(URL(string: GarelikAssistantConstants.fullDiskAcccessUrl)!)
+            NSWorkspace.shared.open(URL(string: Nay8Constants.fullDiskAcccessUrl)!)
         }
     }
     
     @IBAction func EnableDisableRestApiAction(_ sender: Any) {
-        if (defaults.bool(forKey: GarelikAssistantConstants.restApiIsDisabled)) {
-            defaults.set(false, forKey: GarelikAssistantConstants.restApiIsDisabled)
+        if (defaults.bool(forKey: Nay8Constants.restApiIsDisabled)) {
+            defaults.set(false, forKey: Nay8Constants.restApiIsDisabled)
         }
         else {
-            defaults.set(true, forKey: GarelikAssistantConstants.restApiIsDisabled)
+            defaults.set(true, forKey: Nay8Constants.restApiIsDisabled)
         }
     }
     
     @IBAction func contactsButtonAction(_ sender: Any) {
         DispatchQueue.global(qos: .background).async {
-            switch(CNAuthorizationStatus(rawValue: self.defaults.integer(forKey: GarelikAssistantConstants.contactsAccess))) {
+            switch(CNAuthorizationStatus(rawValue: self.defaults.integer(forKey: Nay8Constants.contactsAccess))) {
             case .notDetermined:
                 PermissionsHelper.requestContactsAccess()
                 return
             default:
-                NSWorkspace.shared.open(URL(string: GarelikAssistantConstants.contactsAccessUrl)!)
+                NSWorkspace.shared.open(URL(string: Nay8Constants.contactsAccessUrl)!)
             }
         }
     }
@@ -213,11 +213,11 @@ class ViewController: NSViewController, DiskAccessDelegate {
         if #available(OSX 10.14, *) {
             switch(PermissionsHelper.canSendMessages()) {
             case .notRunning:
-                NSWorkspace.shared.open(URL(string: GarelikAssistantConstants.messagesUrl)!)
+                NSWorkspace.shared.open(URL(string: Nay8Constants.messagesUrl)!)
                 sendStatusButtonAction(sender)
                 break
             case .authorized, .declined, .unknown:
-                NSWorkspace.shared.open(URL(string: GarelikAssistantConstants.automationAccessUrl)!)
+                NSWorkspace.shared.open(URL(string: Nay8Constants.automationAccessUrl)!)
                 break
             case .notDetermined:
                 PermissionsHelper.requestMessageAutomation()
@@ -228,7 +228,7 @@ class ViewController: NSViewController, DiskAccessDelegate {
     @IBAction func OpenPluginsButtonAction(_ sender: Any) {
         let filemanager = FileManager.default
         let appsupport = filemanager.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
-        let supportDir = appsupport.appendingPathComponent("GarelikAssistant")
+        let supportDir = appsupport.appendingPathComponent("Nay8")
         let pluginDir = supportDir.appendingPathComponent("Plugins")
         NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: pluginDir.path)
     }

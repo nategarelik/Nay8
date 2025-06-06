@@ -1,26 +1,26 @@
 //
-//  MessageTests.swift
-//  JaredTests
+//  Nay8WebServerTest.swift
+//  Nay8Tests
 //
-//  Created by Zeke Snider on 2/3/19.
-//  Copyright © 2019 Zeke Snider. All rights reserved.
+//  Created by Nathaniel Garelik on 06/05/25.
+//  Copyright © 2025 Nathaniel Garelik. All rights reserved.
 //
 
 import XCTest
-import JaredFramework
+import Nay8Framework
 
-class JaredWebServerTest: XCTestCase {
+class Nay8WebServerTest: XCTestCase {
     static let validBody = "{\"body\": {\"message\": \"clandestine meetings\"},\"recipient\": {\"handle\": \"handle@email.com\"}}"
     static let invalidBody = "{dskjfal/iqwkjfdslol}"
     
-    var jaredMock: JaredMock!
+    var nay8Mock: Nay8Mock!
     var testDatabaseLocation: URL!
-    var webServer: JaredWebServer!
+    var webServer: Nay8WebServer!
     
     override func setUp() {
-        jaredMock = JaredMock()
+        nay8Mock = Nay8Mock()
         let configuration = WebserverConfiguration(port: 3005)
-        webServer = JaredWebServer(sender: jaredMock, configuration: configuration)
+        webServer = Nay8WebServer(sender: nay8Mock, configuration: configuration)
     }
     
     override func tearDown() {
@@ -33,7 +33,7 @@ class JaredWebServerTest: XCTestCase {
         // Make an invalid post request
         var request = URLRequest(url: URL(string: "http://localhost:3005/message")!)
         request.httpMethod = "POST"
-        request.httpBody = JaredWebServerTest.invalidBody.data(using: String.Encoding.utf8)
+        request.httpBody = Nay8WebServerTest.invalidBody.data(using: String.Encoding.utf8)
         request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         
         var httpResponse: HTTPURLResponse?
@@ -68,7 +68,7 @@ class JaredWebServerTest: XCTestCase {
         // Make an invalid post request
         var request = URLRequest(url: URL(string: "http://localhost:3005/message")!)
         request.httpMethod = "POST"
-        request.httpBody = JaredWebServerTest.validBody.data(using: String.Encoding.utf8)
+        request.httpBody = Nay8WebServerTest.validBody.data(using: String.Encoding.utf8)
         request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         
         var httpResponse: HTTPURLResponse?
@@ -80,8 +80,8 @@ class JaredWebServerTest: XCTestCase {
         
         wait(for: [promise], timeout: 5)
         XCTAssertEqual(httpResponse?.statusCode, 200, "Valid request is successful")
-        XCTAssertEqual(jaredMock.calls.count, 1, "One message sent")
-        XCTAssertEqual((jaredMock.calls[0].body as! TextBody).message, "clandestine meetings", "Message was correct")
-        XCTAssertEqual((jaredMock.calls[0].recipient as! AbstractRecipient).handle, "handle@email.com", "recipient email is correct")
+        XCTAssertEqual(nay8Mock.calls.count, 1, "One message sent")
+        XCTAssertEqual((nay8Mock.calls[0].body as! TextBody).message, "clandestine meetings", "Message was correct")
+        XCTAssertEqual((nay8Mock.calls[0].recipient as! AbstractRecipient).handle, "handle@email.com", "recipient email is correct")
     }
 }

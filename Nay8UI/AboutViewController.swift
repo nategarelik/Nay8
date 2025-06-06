@@ -1,16 +1,16 @@
 //
 //  AboutViewController.swift
-//  JaredUI
+//  Nay8UI
 //
-//  Created by Zeke Snider on 1/12/19.
-//  Copyright © 2019 Zeke Snider. All rights reserved.
+//  Created by Nathaniel Garelik on 06/05/25.
+//  Copyright © 2025 Nathaniel Garelik. All rights reserved.
 //
 
 import Cocoa
 
 class AboutViewController: NSViewController {
     @IBAction func updateButtonClicked(_ sender: Any) {
-        NSWorkspace.shared.open(URL(string: "https://github.com/zekesnider/jared/releases")!)
+        NSWorkspace.shared.open(URL(string: "https://github.com/nategarelik/Nay8/releases")!)
     }
     @IBOutlet weak var versionField: NSTextField!
     

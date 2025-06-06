@@ -1,23 +1,23 @@
 //
 //  InternalModuleTest.swift
-//  JaredTests
+//  Nay8Tests
 //
-//  Created by Zeke Snider on 8/6/20.
-//  Copyright © 2020 Zeke Snider. All rights reserved.
+//  Created by Nathaniel Garelik on 06/05/25.
+//  Copyright © 2025 Nathaniel Garelik. All rights reserved.
 //
 
 import XCTest
-import JaredFramework
+import Nay8Framework
 
 class InternalModuleTest: XCTestCase {
     var internalModule: InternalModule!
-    var sender: JaredMock!
+    var sender: Nay8Mock!
     var pluginManager: MockPluginManager!
     let mePerson = Person(givenName: "zeke", handle: "zeke@email.com", isMe: true)
     let swiftPerson = Person(givenName: "taylor", handle: "taylor@swift.org", isMe: false)
     
     override func setUp() {
-        self.sender = JaredMock()
+        self.sender = Nay8Mock()
         self.pluginManager = MockPluginManager()
         internalModule = InternalModule(sender: sender, pluginManager: pluginManager)
     }
@@ -26,7 +26,7 @@ class InternalModuleTest: XCTestCase {
     }
 
     func testExample() throws {
-        let module1 = MockRoute(sender: JaredMock())
+        let module1 = MockRoute(sender: Nay8Mock())
         module1.add(route: Route(name: startWithString, comparisons: [.startsWith: [startWithString]], call: {(message: Message) -> Void in self.pluginManager.increment(routeName: startWithString)}, description: "hello hello", parameterSyntax: "example syntax"))
         module1.add(route: Route(name: containsString, comparisons: [.contains: [containsString]], call: {(message) -> Void in self.pluginManager.increment(routeName: containsString)}, description: "sfadjklfsa"))
         module1.add(route: Route(name: containsString, comparisons: [.containsURL: [goodUrl]], call: {(message) -> Void in self.pluginManager.increment(routeName: containsString)}))

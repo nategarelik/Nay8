@@ -1,27 +1,27 @@
 //
 //  WebhookTests.swift
-//  Jared
+//  Nay8Tests
 //
-//  Created by Zeke Snider on 2/2/19.
-//  Copyright © 2019 Zeke Snider. All rights reserved.
+//  Created by Nathaniel Garelik on 06/05/25.
+//  Copyright © 2025 Nathaniel Garelik. All rights reserved.
 //
 
 import XCTest
-import JaredFramework
+import Nay8Framework
 
 class WebhookTests: XCTestCase {
-    let WEBHOOK_TEST_URL = "https://github.com/zekesnider/jaredwebhook"
-    let WEBHOOK_TEST_URL_TWO = "https://twitter.com/zekesnider/jaredwebhook"
+    let WEBHOOK_TEST_URL = "https://github.com/nategarelik/Nay8webhook"
+    let WEBHOOK_TEST_URL_TWO = "https://twitter.com/nategarelik/Nay8webhook"
     let MESSAGE_SERIALIZED = "{\"body\":{\"message\":\"hello there jared\"},\"recipient\":{\"handle\":\"jared@email.com\",\"givenName\":\"jared\",\"isMe\":false},\"sender\":{\"handle\":\"zeke@email.com\",\"givenName\":\"zeke\",\"isMe\":true},\"date\":\"2017-05-17T22:57:21.000Z\"}"
     let SAMPLE_MESSAGE = Message(body: TextBody("hello there jared"), date: Date(timeIntervalSince1970: TimeInterval(1495061841)), sender: Person(givenName: "zeke", handle: "zeke@email.com", isMe: true), recipient: Person(givenName: "jared", handle: "jared@email.com", isMe: false))
     
     var config: URLSessionConfiguration!
-    var sender: JaredMock!
+    var sender: Nay8Mock!
     
     override func setUp() {
         config = URLSessionConfiguration.ephemeral
         config.protocolClasses = [URLProtocolMock.self]
-        sender = JaredMock()
+        sender = Nay8Mock()
     }
     
     override func tearDown() {

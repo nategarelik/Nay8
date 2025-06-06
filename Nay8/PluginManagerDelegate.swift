@@ -1,13 +1,13 @@
 //
 //  File.swift
-//  Jared
+//  Nay8
 //
-//  Created by Zeke Snider on 4/20/20.
-//  Copyright © 2020 Zeke Snider. All rights reserved.
+//  Created by Nathaniel Garelik on 06/05/25.
+//  Copyright © 2025 Nathaniel Garelik. All rights reserved.
 //
 
 import Foundation
-import JaredFramework
+import Nay8Framework
 
 protocol PluginManagerDelegate {
     func getAllRoutes() -> [Route]

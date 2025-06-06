@@ -1,16 +1,16 @@
 //
 //  PluginManager.swift
-//  Jared
+//  Nay8
 //
-//  Created by Zeke Snider on 4/9/16.
-//  Copyright © 2016 Zeke Snider. All rights reserved.
+//  Created by Nathaniel Garelik on 06/05/25.
+//  Copyright © 2025 Nathaniel Garelik. All rights reserved.
 //
 
 import Foundation
-import JaredFramework
+import Nay8Framework
 
 class PluginManager: PluginManagerDelegate {
-    var FrameworkVersion: String = "J3.0.0"
+    var FrameworkVersion: String = "Nay8Framework-3.0.0"
     private var modules: [RoutingModule] = []
     private var bundles: [Bundle] = []
     var pluginDir: URL
@@ -68,7 +68,7 @@ class PluginManager: PluginManagerDelegate {
     func loadBundle(_ myBundle: Bundle) {
         //Check version of the framework that this plugin is using
         //TODO: Add better version comparison (2.1.0 should be compatible with 2.0.0)
-        guard myBundle.infoDictionary?["JaredFrameworkVersion"] as? String == self.FrameworkVersion else {
+        guard myBundle.infoDictionary?["Nay8FrameworkVersion"] as? String == self.FrameworkVersion else {
             return
         }
         

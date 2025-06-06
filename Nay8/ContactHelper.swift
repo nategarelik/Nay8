@@ -1,9 +1,9 @@
 //
 //  ContactHelper.swift
-//  JaredUI
+//  Nay8
 //
-//  Created by Zeke Snider on 2/2/19.
-//  Copyright © 2019 Zeke Snider. All rights reserved.
+//  Created by Nathaniel Garelik on 06/05/25.
+//  Copyright © 2025 Nathaniel Garelik. All rights reserved.
 //
 
 import Foundation

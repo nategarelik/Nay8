@@ -1,16 +1,16 @@
 //
 //  MessageTests.swift
-//  JaredTests
+//  Nay8Tests
 //
-//  Created by Zeke Snider on 2/3/19.
-//  Copyright © 2019 Zeke Snider. All rights reserved.
+//  Created by Nathaniel Garelik on 06/05/25.
+//  Copyright © 2025 Nathaniel Garelik. All rights reserved.
 //
 
 import XCTest
-import JaredFramework
+import Nay8Framework
 
 class MessageTests: XCTestCase {
-    let textBody = TextBody("Hey Jared")
+    let textBody = TextBody("Hey Nay8")
     
     let jaredPerson = Person(givenName: "jared", handle: "jared@email.com", isMe: false)
     let mePerson = Person(givenName: "zeke", handle: "zeke@email.com", isMe: true)
@@ -37,7 +37,7 @@ class MessageTests: XCTestCase {
     }
     
     func testGetTextBody() {
-        XCTAssertEqual(sampleTextMessage.getTextBody(), "Hey Jared", "getTextBody returns proper string")
+        XCTAssertEqual(sampleTextMessage.getTextBody(), "Hey Nay8", "getTextBody returns proper string")
     }
     
     func testGetMessageResponse() {

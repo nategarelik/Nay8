@@ -2,13 +2,14 @@
 //  PersistentContainer.swift
 //  
 //
-//  Created by Zeke Snider on 8/13/20.
+//  Copyright 2025 Nathaniel Garelik. All rights reserved.
+//  Created by Nathaniel Garelik on 06/05/25.
 //
 
 import Foundation
 import CoreData
 
-class PersistentContainer: NSPersistentContainer {
+class PersistentContainer: NSPersistentContainer, @unchecked Sendable {
     func saveContext(backgroundContext: NSManagedObjectContext? = nil) {
         let context = backgroundContext ?? viewContext
         guard context.hasChanges else { return }

@@ -1,13 +1,13 @@
 //
-//  MessageTests.swift
-//  JaredTests
+//  RouterTests.swift
+//  Nay8Tests
 //
-//  Created by Zeke Snider on 2/3/19.
-//  Copyright © 2019 Zeke Snider. All rights reserved.
+//  Created by Nathaniel Garelik on 06/05/25.
+//  Copyright © 2025 Nathaniel Garelik. All rights reserved.
 //
 
 import XCTest
-import JaredFramework
+import Nay8Framework
 
 class RouterTests: XCTestCase {
     let mockPluginManager = MockPluginManager()
@@ -23,7 +23,7 @@ class RouterTests: XCTestCase {
     override func setUp() {
         router = Router(pluginManager: mockPluginManager, messageDelegates: [])
         
-        let module1 = MockRoute(sender: JaredMock())
+        let module1 = MockRoute(sender: Nay8Mock())
         module1.add(route: Route(name: startWithString, comparisons: [.startsWith: [startWithString]], call: {(message: Message) -> Void in self.mockPluginManager.increment(routeName: startWithString)}, description: "", parameterSyntax: "example syntax"))
         module1.add(route: Route(name: containsString, comparisons: [.contains: [containsString]], call: {(message) -> Void in self.mockPluginManager.increment(routeName: containsString)}, description: ""))
         module1.add(route: Route(name: containsString, comparisons: [.containsURL: [goodUrl]], call: {(message) -> Void in self.mockPluginManager.increment(routeName: containsString)}))

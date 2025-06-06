@@ -1,14 +1,14 @@
 //
 //  CoreModule.swift
-//  Jared 3.0 - Swiftified
+//  Nay8 - Swiftified
 //
-//  Created by Zeke Snider on 4/3/16.
-//  Copyright © 2016 Zeke Snider. All rights reserved.
+//  Created by Nathaniel Garelik on 06/05/25.
+//  Copyright © 2025 Nathaniel Garelik. All rights reserved.
 //
 
 import Foundation
 import Cocoa
-import JaredFramework
+import Nay8Framework
 
 extension RoutingModule {
     var fullDescription: String {
@@ -87,12 +87,12 @@ class InternalModule: RoutingModule {
     }
     
     func enable(_ message: Message) -> Void {
-        defaults.set(false, forKey: GarelikAssistantConstants.garelikAssistantIsDisabled)
+        defaults.set(false, forKey: Nay8Constants.nay8IsDisabled)
         sender.send(NSLocalizedString("enabledMessage"), to: message.RespondTo())
     }
     
     func disable(_ message: Message) -> Void {
-        defaults.set(true, forKey: GarelikAssistantConstants.garelikAssistantIsDisabled)
+        defaults.set(true, forKey: Nay8Constants.nay8IsDisabled)
         sender.send(NSLocalizedString("disabledMessage"), to: message.RespondTo())
     }
     

@@ -1,9 +1,9 @@
 //
 //  AppDelegate.swift
-//  JaredUI
+//  Nay8UI
 //
-//  Created by Zeke Snider on 4/5/16.
-//  Copyright © 2016 Zeke Snider. All rights reserved.
+//  Created by Nathaniel Garelik on 06/05/25.
+//  Copyright © 2025 Nathaniel Garelik. All rights reserved.
 //
 
 import Cocoa
@@ -11,23 +11,23 @@ import Contacts
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    var sender: GarelikAssistant
+    var sender: Nay8
     var pluginManager: PluginManager
-    var server: JaredWebServer
+    var server: Nay8WebServer
     var databaseHelper: DatabaseHandler!
     override init() {
         UserDefaults.standard.register(defaults: [
-            GarelikAssistantConstants.garelikAssistantIsDisabled: false,
-            GarelikAssistantConstants.restApiIsDisabled: true,
-            GarelikAssistantConstants.contactsAccess: CNAuthorizationStatus.notDetermined.rawValue,
-            GarelikAssistantConstants.fullDiskAccess: true
+            Nay8Constants.nay8IsDisabled: false,
+            Nay8Constants.restApiIsDisabled: true,
+            Nay8Constants.contactsAccess: CNAuthorizationStatus.notDetermined.rawValue,
+            Nay8Constants.fullDiskAccess: true
         ])
         
         let config = ConfigurationHelper.getConfiguration()
         
-        sender = GarelikAssistant()
+        sender = Nay8()
         pluginManager = PluginManager(sender: sender, configuration: config, pluginDir: ConfigurationHelper.getPluginDirectory())
-        server = JaredWebServer(sender: sender, configuration: config.webServer)
+        server = Nay8WebServer(sender: sender, configuration: config.webServer)
         super.init()
     }
 

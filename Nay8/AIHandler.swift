@@ -1,12 +1,12 @@
 import Foundation
-import JaredFramework // This might need to be GarelikAssistantFramework later
+import Nay8Framework // Rebranded framework import
 
-class AIHandler {
-    static let shared = AIHandler() // Singleton pattern
+public class AIHandler {
+    public static let shared = AIHandler() // Singleton pattern
 
     private init() {} // Private initializer for singleton
 
-    func processMessage(_ message: Message, using sender: MessageSender) {
+    public func processMessage(_ message: Message, using sender: MessageSender) {
         guard let messageText = (message.body as? TextBody)?.message else {
             return
         }
@@ -15,7 +15,7 @@ class AIHandler {
         //    - Calling an external AI API (e.g., OpenAI).
         //    - Porting logic from your Python ai_handler.py.
 
-        let aiResponseText = "GarelikAssistant heard: \(messageText)" // Placeholder
+        let aiResponseText = "Nay8 heard: \(messageText)" // Placeholder
 
         // 2. Send the response
         if let recipient = message.RespondTo() { 

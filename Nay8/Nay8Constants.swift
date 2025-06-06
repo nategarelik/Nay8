@@ -1,16 +1,16 @@
 //
-//  JaredConstants.swift
-//  Jared
+//  Nay8Constants.swift
+//  Nay8
 //
-//  Created by Zeke Snider on 8/16/20.
-//  Copyright © 2020 Zeke Snider. All rights reserved.
+//  Created by Nathaniel Garelik on 06/05/25.
+//  Copyright © 2025 Nathaniel Garelik. All rights reserved.
 //
 
 import Foundation
 
-struct GarelikAssistantConstants {
+struct Nay8Constants {
     static let restApiIsDisabled = "RestApiIsDisabled"
-    static let garelikAssistantIsDisabled = "GarelikAssistantIsDisabled"
+    static let nay8IsDisabled = "Nay8IsDisabled"
     static let contactsAccess = "ContactsAccess"
     static let sendMessageAccess = "SendMessageAccess"
     static let fullDiskAccess = "FullDiskAccess"

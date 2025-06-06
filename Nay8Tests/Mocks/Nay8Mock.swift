@@ -1,9 +1,9 @@
 //
-//  MockPluginManager.swift
+//  Nay8Mock.swift
 //  Nay8Tests
 //
-//  Created by Zeke Snider on 8/1/20.
-//  Copyright © 2020 Zeke Snider. All rights reserved.
+//  Created by Nathaniel Garelik on 06/05/25.
+//  Copyright © 2025 Nathaniel Garelik. All rights reserved.
 //
 
 import Foundation

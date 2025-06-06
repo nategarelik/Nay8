@@ -1,11 +1,11 @@
 # Plugins
 
-Plugins allow you to add additional routing modules to Jared by using native Swift code.
+Plugins allow you to add additional routing modules to Nay8 by using native Swift code.
 
-If you would like to develop your own Jared plugins, you need to build a .bundle to be loaded by Jared. You must include JaredFramework.framework in your project and define a public subclass of RoutingModule. The bundle must set this class as the principle class in `Info.plist`. `Info.plist` must also contain a string for `JaredFrameworkVersion`, the current version number is `J3.0.0`.
+If you would like to develop your own Nay8 plugins, you need to build a .bundle to be loaded by Nay8. You must include Nay8Framework.framework in your project and define a public subclass of RoutingModule. The bundle must set this class as the principle class in `Info.plist`. `Info.plist` must also contain a string for `Nay8FrameworkVersion`, the current version number is `3.0.0`.
 
-To include JaredFramework you have 3 options:
-1. Manually include it in the project (Grab it from the [release](https://github.com/ZekeSnider/Jared/releases/latest) page)
+To include Nay8Framework you have 3 options:
+1. Manually include it in the project (Grab it from the [release](https://github.com/nategarelik/Nay8/releases/latest) page)
 2. Use [Carthage](https://github.com/Carthage/Carthage)
 3. Use [CocoaPods](https://cocoapods.org) (coming soon)
 

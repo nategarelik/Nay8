@@ -1,8 +1,8 @@
 import Foundation
 import Telegraph
-import JaredFramework
+import Nay8Framework
 
-class JaredWebServer: NSObject {
+class Nay8WebServer: NSObject {
     static var DEFAULT_PORT = 3000
     var defaults: UserDefaults!
     var server: Server!
@@ -18,23 +18,23 @@ class JaredWebServer: NSObject {
         
         port = configuration.port
         
-        defaults.addObserver(self, forKeyPath: GarelikAssistantConstants.restApiIsDisabled, options: .new, context: nil)
+        defaults.addObserver(self, forKeyPath: Nay8Constants.restApiIsDisabled, options: .new, context: nil)
         updateServerState()
     }
     
     deinit {
         stop()
-        UserDefaults.standard.removeObserver(self, forKeyPath: GarelikAssistantConstants.garelikAssistantIsDisabled)
+        UserDefaults.standard.removeObserver(self, forKeyPath: Nay8Constants.nay8IsDisabled)
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if (keyPath == GarelikAssistantConstants.restApiIsDisabled) {
+        if (keyPath == Nay8Constants.restApiIsDisabled) {
             updateServerState()
         }
     }
     
     func updateServerState() {
-        if (defaults.bool(forKey: GarelikAssistantConstants.restApiIsDisabled)) {
+        if (defaults.bool(forKey: Nay8Constants.restApiIsDisabled)) {
             stop()
         } else {
             start()

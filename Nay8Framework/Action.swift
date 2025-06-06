@@ -1,9 +1,9 @@
 //
 //  main.swift
-//  Jared 3.0 - Swiftified
+//  Nay8
 //
-//  Created by Zeke Snider on 4/3/16.
-//  Copyright © 2016 Zeke Snider. All rights reserved.
+//  Created by Nathaniel Garelik on 06/05/25.
+//  Copyright © 2025 Nathaniel Garelik. All rights reserved.
 //
 
 import Foundation

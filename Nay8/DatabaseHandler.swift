@@ -1,15 +1,15 @@
 //
 //  DatabaseHandler.swift
-//  JaredUI
+//  Nay8
 //
-//  Created by Zeke Snider on 11/9/18.
-//  Copyright © 2018 Zeke Snider. All rights reserved.
+//  Created by Nathaniel Garelik on 06/05/25.
+//  Copyright © 2025 Nathaniel Garelik. All rights reserved.
 //
 
 internal let SQLITE_STATIC = unsafeBitCast(0, to: sqlite3_destructor_type.self)
 internal let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
 
-import JaredFramework
+import Nay8Framework
 import SQLite3
 
 class DatabaseHandler {
@@ -55,11 +55,11 @@ class DatabaseHandler {
         
         if sqlite3_open(databaseLocation.path, &db) != SQLITE_OK {
             NSLog("Error opening SQLite database. Likely Full disk access error.")
-            UserDefaults.standard.set(false, forKey: JaredConstants.fullDiskAccess)
+            UserDefaults.standard.set(false, forKey: Nay8Constants.fullDiskAccess)
             diskAccessDelegate?.displayAccessError()
             return
         }
-        UserDefaults.standard.set(true, forKey: JaredConstants.fullDiskAccess)
+        UserDefaults.standard.set(true, forKey: Nay8Constants.fullDiskAccess)
         
         querySinceID = getCurrentMaxRecordID()
         start()
@@ -75,7 +75,7 @@ class DatabaseHandler {
     }
     
     func start() {
-        let dispatchQueue = DispatchQueue(label: "Jared Background Thread", qos: .background)
+        let dispatchQueue = DispatchQueue(label: "Nay8 Background Thread", qos: .background)
         dispatchQueue.async(execute: self.backgroundAction)
     }
     
