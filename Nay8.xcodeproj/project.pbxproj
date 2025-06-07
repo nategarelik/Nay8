@@ -95,6 +95,10 @@
 		B3F185F724E51C880051C696 /* CoreModule.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B3F185F524E51C880051C696 /* CoreModule.xcdatamodeld */; };
 		B3FB28F224E9BAF7003BA6CB /* PermissionsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FB28F124E9BAF7003BA6CB /* PermissionsHelper.swift */; };
 		B3FB28F424E9BCBD003BA6CB /* Nay8Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FB28F324E9BCBD003BA6CB /* Nay8Constants.swift */; };
+		BDBC2B352DF2A32F002EE2E0 /* AIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBC2B342DF2A32F002EE2E0 /* AIHandler.swift */; };
+		BDBC2B362DF2A32F002EE2E0 /* AIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBC2B342DF2A32F002EE2E0 /* AIHandler.swift */; };
+		BDBC2B382DF2AD39002EE2E0 /* ChatContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBC2B372DF2AD39002EE2E0 /* ChatContext.swift */; };
+		BDBC2B392DF2AD39002EE2E0 /* ChatContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBC2B372DF2AD39002EE2E0 /* ChatContext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -224,6 +228,8 @@
 		B3F185F624E51C880051C696 /* CoreModule.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreModule.xcdatamodel; sourceTree = "<group>"; };
 		B3FB28F124E9BAF7003BA6CB /* PermissionsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsHelper.swift; sourceTree = "<group>"; };
 		B3FB28F324E9BCBD003BA6CB /* Nay8Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nay8Constants.swift; sourceTree = "<group>"; };
+		BDBC2B342DF2A32F002EE2E0 /* AIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIHandler.swift; sourceTree = "<group>"; };
+		BDBC2B372DF2AD39002EE2E0 /* ChatContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatContext.swift; sourceTree = "<group>"; };
 		C31CB7445EAF3431D6AA3FD4 /* Pods_JaredUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JaredUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -393,6 +399,7 @@
 			children = (
 				B30F765724C574FD00ADF57B /* Nay8Release.entitlements */,
 				B3774D4E2424AFEB00F02F62 /* Nay8Debug.entitlements */,
+				BDBC2B342DF2A32F002EE2E0 /* AIHandler.swift */,
 				7FF077EA1CBCFFCB008E33CB /* SendImage.scpt */,
 				B37E82801FA85B170069E15D /* SendImageSingleBuddy.scpt */,
 				B39F2B381CB3BCA700C0D35C /* SendText.scpt */,
@@ -403,6 +410,7 @@
 				B39A65DF1CC1FB1B003E26B0 /* PluginManager.swift */,
 				B3327DC522066427009DD882 /* WebHookManager.swift */,
 				B3C59283224DD17900116ECB /* Nay8WebServer.swift */,
+				BDBC2B372DF2AD39002EE2E0 /* ChatContext.swift */,
 				B35CE7142196AD4E002F52A7 /* DatabaseHandler.swift */,
 				B38BB6B024EBB530000700F7 /* Helpers */,
 				B38BB6AE24EBB4CE000700F7 /* Structures */,
@@ -673,8 +681,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDBC2B362DF2A32F002EE2E0 /* AIHandler.swift in Sources */,
 				B347A4A624DD0CE500E93657 /* MessageSender.swift in Sources */,
 				B3EF1DAC2206E17900953DE7 /* Entities.swift in Sources */,
+				BDBC2B392DF2AD39002EE2E0 /* ChatContext.swift in Sources */,
 				B3EF1DAE2206E19100953DE7 /* Bodies.swift in Sources */,
 				B353946424E7A89A00F9424A /* Message.swift in Sources */,
 				B369509224DE91760027CB1E /* Configuration.swift in Sources */,
@@ -708,9 +718,11 @@
 				B35CE7152196AD4E002F52A7 /* DatabaseHandler.swift in Sources */,
 				B3BF17C6244EC47700CC44C5 /* MessageDelegate.swift in Sources */,
 				B3327DC42206607B009DD882 /* ContactHelper.swift in Sources */,
+				BDBC2B382DF2AD39002EE2E0 /* ChatContext.swift in Sources */,
 				B332787C1CB2CB1300BBDD3A /* ViewController.swift in Sources */,
 				B3327DC622066427009DD882 /* WebHookManager.swift in Sources */,
 				B3FB28F224E9BAF7003BA6CB /* PermissionsHelper.swift in Sources */,
+				BDBC2B352DF2A32F002EE2E0 /* AIHandler.swift in Sources */,
 				B3B844CB24DA5D1700DC162A /* DiskAccessDelegate.swift in Sources */,
 				B332787A1CB2CB1300BBDD3A /* AppDelegate.swift in Sources */,
 				B3BF17C4244EBF4900CC44C5 /* InternalModule.swift in Sources */,
@@ -959,7 +971,7 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = U88U9HWX2T;
 				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = JaredUI/Info.plist;
+				INFOPLIST_FILE = Nay8UI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -971,7 +983,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.5.5;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jaredapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nay8app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -992,7 +1004,7 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = U88U9HWX2T;
 				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = JaredUI/Info.plist;
+				INFOPLIST_FILE = Nay8UI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1004,7 +1016,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.5.5;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jaredapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nay8app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[arch=*]" = "";

@@ -29,13 +29,69 @@ let intervalSeconds: [IntervalType: Double] =
     ]
 
 class CoreModule: RoutingModule {
-    var description: String = NSLocalizedString("CoreDescription")
+    var description: String = "Nay8 message relay"
     var routes: [Route] = []
-    let MAXIMUM_CONCURRENT_SENDS = 3
-    var currentSends: [String: Int] = [:]
-    let scheduleCheckInterval = 30.0 * 60.0
     var sender: MessageSender
-    var timer: Timer!
+
+    let n8nWebhookURL = "https://ngarelik.app.n8n.cloud/webhook-test/503ebf92-b5f5-4022-8f8a-6725ac2e5284"
+
+    required public init(sender: MessageSender) {
+        self.sender = sender
+        let relayRoute = Route(
+            name: "/relay",
+            comparisons: [.startsWith: ["/relay"]],
+            call: { [weak self] in self?.relayToN8n($0) },
+            description: "Relay message to n8n workflow"
+        )
+        routes = [relayRoute]
+    }
+
+    func relayToN8n(_ message: Message) {
+        guard let messageText = (message.body as? TextBody)?.message else {
+            sender.send("No message content to relay.", to: message.RespondTo())
+            return
+        }
+
+        // Prepare JSON payload
+        let payload: [String: Any] = [
+            "sender": message.sender.handle,
+            "recipient": message.recipient.handle,
+            "message": messageText
+        ]
+        guard let jsonData = try? JSONSerialization.data(withJSONObject: payload) else {
+            sender.send("Failed to encode message for webhook.", to: message.RespondTo())
+            return
+        }
+
+        // Send POST to n8n webhook
+        guard let url = URL(string: n8nWebhookURL) else {
+            sender.send("Invalid n8n webhook URL.", to: message.RespondTo())
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+
+        let task = URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
+            guard let self = self else { return }
+            if let error = error {
+                self.sender.send("Webhook error: \(error.localizedDescription)", to: message.RespondTo())
+                return
+            }
+            guard let data = data else {
+                self.sender.send("No response from n8n webhook.", to: message.RespondTo())
+                return
+            }
+            if let responseText = String(data: data, encoding: .utf8), !responseText.isEmpty {
+                self.sender.send(responseText, to: message.RespondTo())
+            } else {
+                self.sender.send("Message relayed to n8n.", to: message.RespondTo())
+            }
+        }
+        task.resume()
+    }
+
     
     var persistentContainer: PersistentContainer = {
         let container = PersistentContainer(name: "CoreModule")
@@ -54,6 +110,7 @@ class CoreModule: RoutingModule {
         
         let ping = Route(name:"/ping", comparisons: [.startsWith: ["/ping"]], call: {[weak self] in self?.pingCall($0)}, description: NSLocalizedString("pingDescription"))
         
+        
         let thankYou = Route(name:"Thank You", comparisons: [.startsWith: [NSLocalizedString("ThanksNay8Command")]], call: {[weak self] in self?.thanksNay8($0)}, description: NSLocalizedString("ThanksNay8Response"))
         
         let version = Route(name: "/version", comparisons: [.startsWith: ["/version"]], call: {[weak self] in self?.getVersion($0)}, description: "Get the version of Nay8 running")
@@ -68,7 +125,13 @@ class CoreModule: RoutingModule {
         
         let barf = Route(name: "/barf", comparisons: [.startsWith: ["/barf"]], call: {[weak self] in self?.barf($0)}, description: NSLocalizedString("barfDescription"))
         
-        routes = [ping, thankYou, version, send, whoami, name, schedule, barf]
+        // Add route for /Nay8 AI activation
+        let nay8 = Route(name: "/Nay8", comparisons: [.startsWith: ["/Nay8", "/nay8"]], call: {[weak self] in self?.activateAI($0)}, description: "Activate Nay8 AI assistant")
+        
+        // Add route for /activate-n8n webhook trigger
+        let activateN8n = Route(name: "/activate-n8n", comparisons: [.startsWith: ["/activate-n8n"]], call: {[weak self] in self?.activateN8nWebhook($0)}, description: "Trigger n8n automation webhook")
+        
+        routes = [ping, thankYou, version, send, whoami, name, schedule, barf, nay8, activateN8n]
         
         //Launch background thread that will check for scheduled messages to send
         timer = Timer.scheduledTimer(withTimeInterval: 10, repeats: true, block: {[weak self] (theTimer) in
@@ -87,6 +150,19 @@ class CoreModule: RoutingModule {
     
     func barf(_ incoming: Message) -> Void {
         sender.send(String(data: try! JSONEncoder().encode(incoming), encoding: .utf8) ?? "nil", to: incoming.RespondTo())
+    }
+    
+    func activateAI(_ message: Message) -> Void {
+        // Send message to AIHandler
+        AIHandler.shared.processMessage(message, using: sender)
+    }
+
+    func activateN8nWebhook(_ message: Message) -> Void {
+        // Send POST to n8n webhook
+        let webhookURL = "https://ngarelik.app.n8n.cloud/webhook-test/503ebf92-b5f5-4022-8f8a-6725ac2e5284"
+        let webhookManager = WebHookManager(sender: sender)
+        webhookManager.notifyRoute(message, url: webhookURL)
+        sender.send("n8n automation triggered.", to: message.RespondTo())
     }
     
     func getWho(_ message: Message) -> Void {

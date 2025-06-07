@@ -235,6 +235,8 @@ class ViewController: NSViewController, DiskAccessDelegate {
     @IBAction func ReloadButtonPressed(_ sender: Any) {
         if let appDelegate = NSApplication.shared.delegate as? AppDelegate {
             appDelegate.pluginManager.reload()
+        } else {
+            print("App Delegate not available")
         }
     }
     

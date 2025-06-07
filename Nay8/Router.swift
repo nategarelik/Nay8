@@ -19,6 +19,7 @@ class Router : RouterDelegate {
     }
     
     func route(message myMessage: Message) {
+        // Notify message delegates first
         messageDelegates.forEach { delegate in delegate.didProcess(message: myMessage) }
         
         // Currently don't process any images
@@ -36,11 +37,13 @@ class Router : RouterDelegate {
             return
         }
         
+        // Check if message matches any routes
         var commandMatched = false
         RootLoop: for route in pluginManager.getAllRoutes() {
             guard (pluginManager.enabled(routeName: route.name)) else {
-                break
+                continue
             }
+            
             for comparison in route.comparisons {
                 if comparison.0 == .containsURL {
                     for match in matches {
@@ -50,34 +53,38 @@ class Router : RouterDelegate {
                                 let urlMessage = Message(body: TextBody(url), date: myMessage.date ?? Date(), sender: myMessage.sender, recipient: myMessage.recipient, attachments: [])
                                 route.call(urlMessage)
                                 commandMatched = true
+                                break RootLoop // Exit early if we matched a URL route
                             }
                         }
                     }
                 }
-                    
+                
                 else if comparison.0 == .startsWith {
                     for comparisonString in comparison.1 {
                         if myLowercaseMessage.hasPrefix(comparisonString.lowercased()) {
                             route.call(myMessage)
                             commandMatched = true
+                            break RootLoop // Exit early if we matched a startWith route
                         }
                     }
                 }
-                    
+                
                 else if comparison.0 == .contains {
                     for comparisonString in comparison.1 {
                         if myLowercaseMessage.contains(comparisonString.lowercased()) {
                             route.call(myMessage)
                             commandMatched = true
+                            break RootLoop // Exit early if we matched a contains route
                         }
                     }
                 }
-                    
+                
                 else if comparison.0 == .is {
                     for comparisonString in comparison.1 {
                         if myLowercaseMessage == comparisonString.lowercased() {
                             route.call(myMessage)
                             commandMatched = true
+                            break RootLoop // Exit early if we matched an exact match route
                         }
                     }
                 }
@@ -85,11 +92,13 @@ class Router : RouterDelegate {
                     if myMessage.action != nil {
                         route.call(myMessage)
                         commandMatched = true
+                        break RootLoop // Exit early if we matched a reaction route
                     }
                 }
             }
         }
 
+        // If no route matched and it's not from the user, process with AIHandler
         if !commandMatched {
             if let senderPerson = myMessage.sender as? Person, !senderPerson.isMe {
                 AIHandler.shared.processMessage(myMessage, using: pluginManager.getMessageSender())
